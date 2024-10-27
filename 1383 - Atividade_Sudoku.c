@@ -31,9 +31,10 @@ int main() {
     }
 
     for (k = 0; k < num_matrizes; k++) {
-        printf("\nInstancia %d:\n%s\n", k + 1, resultados[k]);
+        if (k == 0){
+        printf("Instancia %d\n%s\n", k + 1, resultados[k]);
+        } else printf ("\nInstancia %d\n%s\n", k + 1, resultados[k]);         
     }
-  
     return 0;
 }
 
