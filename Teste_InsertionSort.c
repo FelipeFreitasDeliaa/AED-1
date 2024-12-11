@@ -17,13 +17,13 @@ void insertionsort(int tamanho, int v[]) {
 }
 
 int main() {
-    const int INCREMENTO = 20000;
-    const int TAM_MAX = 400000;
+    const int incremento = 20000;
+    const int maximo = 400000;
     int tamanho_atual = 20000;
 
     clock_t t;
 
-    while (tamanho_atual <= TAM_MAX) {
+    while (tamanho_atual <= maximo) {
         // Aloca dinamicamente o vetor com o tamanho atual
         int *vetor = (int *)malloc(tamanho_atual * sizeof(int));
         if (vetor == NULL) {
@@ -50,7 +50,7 @@ int main() {
         free(vetor);
 
         // Incrementa o tamanho do vetor
-        tamanho_atual += INCREMENTO;
+        tamanho_atual += incremento;
     }
 
     return 0;
