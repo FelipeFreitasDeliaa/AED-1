@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <time.h> //clock(), CLOCKS_PER_SEC e clock_t
 
+int const TAM = 20000; //constante para tamanho do vetor
+
 void insertionsort(int tamanho, int v[]) {
     int i, j, x;
     for (j = 1; j < tamanho; j++) {
@@ -17,41 +19,24 @@ void insertionsort(int tamanho, int v[]) {
 }
 
 int main() {
-    const int incremento = 20000;
-    const int maximo = 400000;
-    int tamanho_atual = 20000;
+    clock_t t; // Variável para armazenar tempo
+    int vetor[TAM];
 
-    clock_t t;
+    // Semente de aleatoriedade
+    srand((unsigned)time(NULL));
 
-    while (tamanho_atual <= maximo) {
-        // Aloca dinamicamente o vetor com o tamanho atual
-        int *vetor = (int *)malloc(tamanho_atual * sizeof(int));
-        if (vetor == NULL) {
-            printf("Erro ao alocar memoria\n");
-            return 1;
-        }
+    // Geração aleatória dos valores do vetor
+    for (int a = 0; a < TAM; a++)
+        vetor[a] = rand() % TAM;
 
-        // Preenche o vetor com valores aleatórios
-        srand((unsigned)time(NULL));
-        for (int i = 0; i < tamanho_atual; i++) {
-            vetor[i] = rand() % tamanho_atual;
-        }
+    // Verificando tempo de execução do InsertionSort
+    printf("Ordenando vetor de tamanho %d...\n", TAM);
+    t = clock(); // Armazena tempo
+    insertionsort(TAM, vetor);
+    t = clock() - t; // Tempo final - inicial
 
-        // Mede o tempo de execução do insertion sort
-        t = clock();
-        insertionsort(tamanho_atual, vetor);
-        t = clock() - t;
-
-        // Imprime o tamanho do vetor e o tempo de execução
-        printf("Tamanho do vetor: %d -> Tempo de execucao: %lf s\n",
-               tamanho_atual, ((double)t) / CLOCKS_PER_SEC);
-
-        // Libera a memória alocada
-        free(vetor);
-
-        // Incrementa o tamanho do vetor
-        tamanho_atual += incremento;
-    }
+    // Imprime o tempo na tela
+    printf("Tempo de execucao: %lf s\n", ((double)t) / ((CLOCKS_PER_SEC))); // Conversão para double
 
     return 0;
 }
