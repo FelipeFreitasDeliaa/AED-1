@@ -1,7 +1,7 @@
 /*Felipe Freitas D' Elia
             RA: 176284*/
 
-#include <stdio.h>´
+#include <stdio.h>
 #include <math.h>
  
 int main() {
